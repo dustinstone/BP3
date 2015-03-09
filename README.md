@@ -1,9 +1,6 @@
 # BP3
 BP3 Internship Challenge
 
-src/main/java/TaskController.java
-- Controller class
-src/main/java/Tasks.java
-- Logic class
-src/test/java/TestsTasks.java
-- Unit testing
+- src/main/java/TaskController.java
+- src/main/java/Tasks.java
+- src/test/java/TestsTasks.java
