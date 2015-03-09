@@ -66,29 +66,34 @@ public class Tasks {
         // Create instances
         instances = new TreeMap<Integer, TreeSet<Task>>();
 
-        // Iterate over 'json' (objects in task.json)
-        Iterator iterator = json.iterator();
-        while (iterator.hasNext()) {
-            // Objects in 'json' are Maps
-            HashMap<String, Object> map = (HashMap<String, Object>) iterator.next();
+        if (json != null) {
+            // Iterate over 'json' (objects in task.json)
+            Iterator iterator = json.iterator();
+            while (iterator.hasNext()) {
+                // Objects in 'json' are Maps
+                HashMap<String, Object> map = (HashMap<String, Object>) iterator.next();
 //                        System.out.println(map);
-            // Create a new Task object and set its values
-            Task task = new Task();
-            task.name = (String) map.get("name");
-            task.id = Integer.parseInt((String) map.get("id"));
-            task.instanceId = (Integer) map.get("instanceId");
-            task.status = (String) map.get("status");
-            task.createDate = (String) map.get("createDate");
-            task.closeDate = (String) map.get("closeDate");
-            task.dueDate = (String) map.get("dueDate");
+                // Create a new Task object and set its values
+                Task task = new Task();
+                task.name = (String) map.get("name");
+                task.id = Integer.parseInt((String) map.get("id"));
+                task.instanceId = (Integer) map.get("instanceId");
+                task.status = (String) map.get("status");
+                task.createDate = (String) map.get("createDate");
+                task.closeDate = (String) map.get("closeDate");
+                task.dueDate = (String) map.get("dueDate");
 //                        System.out.println(task);
 
-            // Add this Task object to instances
-            TreeSet<Task> instanceTasks = instances.containsKey(task.instanceId) ?
-                    instances.get(task.instanceId) : new TreeSet<Task>();
-            instanceTasks.add(task);
-            instances.put(task.instanceId, instanceTasks);
-            result = true;
+                // Add this Task object to instances
+                TreeSet<Task> instanceTasks = instances.containsKey(task.instanceId) ?
+                        instances.get(task.instanceId) : new TreeSet<Task>();
+                instanceTasks.add(task);
+                instances.put(task.instanceId, instanceTasks);
+                result = true;
+            }
+        }
+        else {
+            System.out.println("Error: json is null!");
         }
 
         return result;
